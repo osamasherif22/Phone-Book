@@ -1,46 +1,51 @@
-// function to display inter-active menu
+#include <conio.h> #include <stdlib.h>
+/**function to display inter-active menu **/
 void Load_menu()
 {
 	int choice;
 
 	do
 	{
-		printf("*** Main Menu ***\n\n");
+		printf("\n\n*** Main Menu ***\n\n");
 		printf("|1| ADD \n");
-		printf("|2| SEARCH \n");
-		printf("|3| DELETE \n");
-        printf("|4| Print \n");
-		printf("|5| MODIFY \n");
-		printf("|6| LOAD \n");
+		printf("|2| LOAD \n");
+		printf("|3| MODIFY \n");
+        printf("|4| DELETE \n");
+		printf("|5| Print \n");
+		printf("|6| SEARCH \n");
 		printf("|7| SAVE \n");
-        printf("|8| QUIT \n");
+        printf("|8| QUIT \n\n\n");
 
 		scanf("%d",&choice);
 
 		switch(choice)
 		{
-			case 1 : ADD();
+           case 1 : ADD();
+                    bubble_sort();
 				break;
-			//case 2 : SEARCH();
+           case 6 : SEARCH();
 				break;
-           // case 3 : DELETE();
+           case 4 : DELETE();
 				break;
-           // case 4 : PRINT();
+           case 5 : PRINT();
 				break;
-           // case 5 : MODIFY();
+           case 3 : MODIFY();
+                  bubble_sort();
 				break;
-            case 6 :LOAD();
-				break;
-            case 7 : SAVE();
+           case 2 : LOAD();
+                    bubble_sort();
+			     	break;
+           case 7 : SAVE();
 				break;
 			case 8:
-                printf("\nyou are quiting without saving !\n");
-                printf("\nQuitting program!\n");
+			    system("cls");
+                printf("\n \n Quitting program!\n\n");
 				exit(0);
 				break;
 			default: printf("\nInvalid choice!\n");
 				break;
 		}
+		 system("cls");
 
 	} while (choice != 8);
 
