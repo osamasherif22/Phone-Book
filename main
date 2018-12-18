@@ -6,8 +6,7 @@
 
 int main()
 {
-
+printf(" \n\n*** WELCOME TO TELEPHONE PROGRAMM ***\n\n");
   Load_menu();
     return 0;
 }
-
