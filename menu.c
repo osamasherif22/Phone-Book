@@ -6,22 +6,21 @@ void Load_menu()
 
 	do
 	{
-		printf("\n\n*** Main Menu ***\n\n");
-		printf("|1| ADD \n");
-		printf("|2| LOAD \n");
-		printf("|3| MODIFY \n");
-        printf("|4| DELETE \n");
-		printf("|5| Print \n");
-		printf("|6| SEARCH \n");
-		printf("|7| SAVE \n");
-        printf("|8| QUIT \n\n\n");
+		printf("\n\n\t*** Main Menu ***\n\n");
+		printf("\t|1| ADD \n");
+		printf("\t|2| SORT \n");
+		printf("\t|3| MODIFY \n");
+        printf("\t|4| DELETE \n");
+		printf("\t|5| Print \n");
+		printf("\t|6| SEARCH \n");
+		printf("\t|7| SAVE \n");
+        printf("\t|8| QUIT \n\n\n");
 
 		scanf("%d",&choice);
 
 		switch(choice)
 		{
            case 1 : ADD();
-                    bubble_sort();
 				break;
            case 6 : SEARCH();
 				break;
@@ -30,19 +29,17 @@ void Load_menu()
            case 5 : PRINT();
 				break;
            case 3 : MODIFY();
-                  bubble_sort();
 				break;
-           case 2 : LOAD();
-                    bubble_sort();
+           case 2 : bubble_sort();
 			     	break;
            case 7 : SAVE();
 				break;
 			case 8:
 			    system("cls");
-                printf("\n \n Quitting program!\n\n");
+                printf("\n \n \t Quitting program!\n\n");
 				exit(0);
 				break;
-			default: printf("\nInvalid choice!\n");
+			default: printf("\n \tInvalid choice!\n");
 				break;
 		}
 		 system("cls");
