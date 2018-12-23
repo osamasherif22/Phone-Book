@@ -6,15 +6,15 @@ void Load_menu()
 
 	do
 	{
-		printf("\n\n\t*** Main Menu ***\n\n");
-		printf("\t|1| ADD \n");
-		printf("\t|2| SORT \n");
-		printf("\t|3| MODIFY \n");
-        printf("\t|4| DELETE \n");
-		printf("\t|5| Print \n");
-		printf("\t|6| SEARCH \n");
-		printf("\t|7| SAVE \n");
-        printf("\t|8| QUIT \n\n\n");
+		printf("\n\n\t\t\t*** Main Menu ***\n\n");
+		printf("\t\t\t|1| ADD \n");
+		printf("\t\t\t|2| SORT \n");
+		printf("\t\t\t|3| MODIFY \n");
+        printf("\t\t\t|4| DELETE \n");
+		printf("\t\t\t|5| Print \n");
+		printf("\t\t\t|6| SEARCH \n");
+		printf("\t\t\t|7| SAVE \n");
+        printf("\t\t\t|8| QUIT \n\n\n");
 
 		scanf("%d",&choice);
 
