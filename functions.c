@@ -259,7 +259,7 @@ void PRINT()
     printf("\n\n\t Printing entire Directory In sorted Order \n\n");
     for (int i=0 ; i<counter; i++)
     {
-          printf("%d",counter);
+
         printf("\tNo.%d\n",i+1);
         printf("last name is :%s \n",arr[i].last_name);
         printf("first name is : %s \n",arr[i].first_name);
