@@ -1,4 +1,8 @@
-#include <conio.h> #include <stdlib.h>
+#ifndef PROJECT_H
+#define PROJECT_H
+#endif // PROJECT_H
+#include <stdio.h> #include <stdlib.h>  #include <string.h> #include <conio.h>  #include "project.h"
+
 /**function to display inter-active menu **/
 void Load_menu()
 {
@@ -30,20 +34,19 @@ void Load_menu()
 				break;
            case 3 : MODIFY();
 				break;
-           case 2 : bubble_sort();
+           case 2 : SORT();
 			     	break;
            case 7 : SAVE();
 				break;
 			case 8:
-			    system("cls");
-                printf("\n \n \t Quitting program!\n\n");
-				exit(0);
-				break;
+			   Exit();
 			default: printf("\n \tInvalid choice!\n");
 				break;
 		}
 		 system("cls");
 
-	} while (choice != 8);
+	} while (1);
 
 }
+
+
