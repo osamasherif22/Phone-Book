@@ -1,16 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "project.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <conio.h>
+#include <stdio.h> #include <stdlib.h>  #include <string.h> #include <conio.h>  #include "project.h"
 
 
 int main()
 {
     LOAD();
-    system("Color F5");
-printf(" \n\n*** WELCOME TO TELEPHONE PROGRAMM ***\n\n");
+    system("Color F0");
+printf(" \n\n\t\t*** WELCOME TO TELEPHONE PROGRAMM ***\n\n");
   Load_menu();
     return 0;
 }
