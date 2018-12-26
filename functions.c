@@ -5,16 +5,16 @@ int flag_s =0 ;
 
 typedef struct
 {
-    int day;
-    int month;
-    int year;
+    char day[16];
+    char month[32];
+    char year[128];
 } birth;
 typedef struct
 {
     char first_name[100];
     char last_name[100];
     birth BD;
-    char adress[100];
+    char adress[264];
     char email[100];
     char mob_num[64];
 } cont;
@@ -48,11 +48,11 @@ void LOAD ()
 
             fscanf(fRptr,"%[^,],",arr[counter].last_name);
             fscanf(fRptr,"%[^,],",arr[counter].first_name);
-            fscanf(fRptr,"%d-",&arr[counter].BD.day);
-            fscanf(fRptr,"%d-",&arr[counter].BD.month);
-            fscanf(fRptr,"%d,",&arr[counter].BD.year);
-            fscanf(fRptr,"%[^,],",arr[counter].email);
+            fscanf(fRptr,"%[^-]-",&arr[counter].BD.day);
+            fscanf(fRptr,"%[^-]-",&arr[counter].BD.month);
+            fscanf(fRptr,"%[^,],,",&arr[counter].BD.year);
             fscanf(fRptr,"%[^,],",arr[counter].adress);
+            fscanf(fRptr,"%[^,],",arr[counter].email);
             fscanf(fRptr,"%s\n",arr[counter].mob_num);
 
 
@@ -75,8 +75,8 @@ void ADD()
     int n ;
     printf("\n\nHow many contacts do you want to add : ");
     scanf("%d",&n);
-
-    for(int i=0 ; i<n; i++)
+int i;
+    for( i=0 ; i<n; i++)
     {
         printf("\nEnter the last name of contact No.%d:",(i+1));
         int check_ln;
@@ -90,30 +90,30 @@ void ADD()
         int check_fn;
         do{
         scanf(" %[^\t\n]s",arr[counter].first_name);
-        check_ln =validate_string((arr[counter].first_name));
-        }while(!check_ln);
+        check_fn =validate_string((arr[counter].first_name));
+        }while(!check_fn);
 
         printf("Enter the birth date of the contact No.%d:\n",(i+1));
         printf("day: ");
         int check_d;
         do{
-        scanf("%d",&arr[counter].BD.day);
+        scanf(" %[^\t\n]s",arr[counter].BD.day);
         check_d = validate_day(arr[counter].BD.day);
         }while(!check_d);
 
         printf("month: ");
         int check_mon;
         do{
-        scanf("%d",&arr[counter].BD.month);
+        scanf(" %[^\t\n]s",arr[counter].BD.month);
         check_mon = validate_month(arr[counter].BD.month);
         }while(!check_mon);
 
         printf("year: ");
         int check_year,numofdig;
         do{
-        scanf("%d",&arr[counter].BD.year);
-        numofdig=count(arr[counter].BD.year);
-        check_year = validate_year(arr[counter].BD.year,numofdig);
+        scanf(" %[^\t\n]s",arr[counter].BD.year);
+        //numofdig=count(arr[counter].BD.year);
+        check_year = validate_year(arr[counter].BD.year);
         }while(!check_year);
 
         printf("Enter the address of the contact No.%d:",(i+1));
@@ -130,10 +130,7 @@ void ADD()
         counter++;
     }
 flag_s=0;
-    char ch ;
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
-    printf("\n\nPress ENTER to Back to Menu ......");
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
+   WAIT();
 }
 
 /******************************************* (2)SORT FUNCTION *******************************************/
@@ -158,75 +155,62 @@ void SORT()
     case 'a' :
         sort_ALL();
 
-        char ch ;
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
-        printf("\n\n\tSORTED COMPLETED\n\n");
-        printf("\n\nPress ENTER to Back to Main menu  .....");
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
+         WAIT();
         break;
     case 'F' :
     case 'f':
-    {
-        for (int i=0 ; i<counter-1 ; i++)
-        {
-            for (int j=0 ; j<counter-i-1; j++)
+    {int i;
+        for ( i=0 ; i<counter-1 ; i++)
+        {int j;
+            for ( j=0 ; j<counter-i-1; j++)
             {
                 sort_first (j );
             }
         }
         char ch ;
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
-        printf("\n\n\tSORTED COMPLETED\n\n");
-        printf("\n\nPress ENTER to Back to Main menu  .....");
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
+         WAIT();
         break;
     }
     case 'L':
     case 'l':
     {
-        for (int i=0 ; i<counter-1 ; i++)
-        {
-            for (int j=0 ; j<counter-i-1; j++)
+        int i;
+        for ( i=0 ; i<counter-1 ; i++)
+        {int j;
+            for ( j=0 ; j<counter-i-1; j++)
             {
                 sort_last (j );
             }
         }
 
-        char ch ;
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
-        printf("\n\n\tSORTED COMPLETED\n\n");
-        printf("\n\nPress ENTER to Back to Main menu  .....");
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
+         WAIT();
         break;
     }
     case 'M':
     case 'm':
-    {
-        for (int i=0 ; i<counter-1 ; i++)
-        {
-            for (int j=0 ; j<counter-i-1; j++)
+    {int i;
+        for ( i=0 ; i<counter-1 ; i++)
+        {int j;
+            for ( j=0 ; j<counter-i-1; j++)
             {
                 sort_mob (j );
             }
         }
+        WAIT();
         break;
     }
     case 'D' :
     case 'd' :
-    {
-        for (int i=0 ; i<counter-1 ; i++)
-        {
-            for (int j=0 ; j<counter-i-1; j++)
+    {int i;
+        for ( i=0 ; i<counter-1 ; i++)
+        {int j;
+            for (j=0 ; j<counter-i-1; j++)
             {
                 sort_date(j);
             }
         }
 
-        char ch ;
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
-        printf("\n\n\tSORTED COMPLETED\n\n");
-        printf("\n\nPress ENTER to Back to Main menu  .....");
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
+        WAIT();
         break;
     }
 
@@ -286,7 +270,7 @@ void MODIFY ()
             printf("\n\tNo.%d\n",i);
             printf("last name is : %s \n",arr[i].last_name);
             printf("first name is :%s \n",arr[i].first_name);
-            printf("Date of birth is %d-%d-%d \n",arr[i].BD.day,arr[i].BD.month,arr[i].BD.year);
+            printf("Date of birth is %s-%s-%s \n",arr[i].BD.day,arr[i].BD.month,arr[i].BD.year);
             printf("address is : %s\n",arr[i].adress);
             printf("email is :%s \n",arr[i].email);
             printf("mobile number is : %s\n",arr[i].mob_num);
@@ -334,11 +318,11 @@ void MODIFY ()
             case 3 :
                 printf("enter new birth date :");
                 printf("enter new birth [day] :");
-                scanf("%d",&arr[a[0]].BD.day);
+                scanf("%s",arr[a[0]].BD.day);
                 printf("enter new birth [month] :");
-                scanf("%d",&arr[a[0]].BD.month);
+                scanf("%s",arr[a[0]].BD.month);
                 printf("enter new birth [year] :");
-                scanf("%d",&arr[a[0]].BD.year);
+                scanf("%s",arr[a[0]].BD.year);
                 flag_s=0;
 
                 break;
@@ -372,10 +356,7 @@ void MODIFY ()
                 return;
             default:
                 printf("\nInvalid choice!\n");
-                char ch21 ;
-                while ((ch21 = getchar()) != '\n' && ch21 != EOF) ;
-                printf("\n\nPress ENTER to Back to Modify menu ...... \n");
-                while ((ch21 = getchar()) != '\n' && ch21 != EOF) ;
+            WAIT();
                 break;
             }
 
@@ -390,7 +371,8 @@ void MODIFY ()
     int k;
     printf("what is contact number does you want to Modify in :");
     scanf("%d",&k);
-    for (int n=0; n<j; n++)
+    int n;
+    for (n=0; n<j; n++)
     {
 
         if(a[n]==k)
@@ -420,11 +402,11 @@ void MODIFY ()
                 case 3 :
                     printf("\nenter new birth date :\n");
                     printf("enter new birth [day] :");
-                    scanf("%d",&arr[k].BD.day);
+                    scanf("%s",&arr[k].BD.day);
                     printf("\tenter new birth [month] :");
-                    scanf("%d",&arr[k].BD.month);
+                    scanf("%s",&arr[k].BD.month);
                     printf("\tenter new birth [year] :");
-                    scanf("%d",&arr[k].BD.year);
+                    scanf("%s",&arr[k].BD.year);
                     flag_s=0;
 
                     break;
@@ -475,13 +457,8 @@ void MODIFY ()
 
     if(fflag!=1)
     {
-        char ch ;
-        while ((ch = getchar()) != '\n' && ch != EOF) ;
-
-        printf("\n\n INvalid choice ! \n ");
-        printf("\n\nPress ENTER to Back to main menu ....... \n");
-        while ((ch = getchar()) != '\n' && ch != EOF)
-            ;
+        WAIT();
+            
         return;
     }
 
@@ -498,7 +475,8 @@ void DELETE()
     int flag_dele=0;
     int j =0;
     int a[100];
-    for ( int i =0; i < counter; i++)
+    int i;
+    for ( i=0; i < counter; i++)
     {
         if ((strcasecmp(target,arr[i].last_name)==0))
         {
@@ -507,7 +485,7 @@ void DELETE()
             printf("\n\tNo.%d\n",i);
             printf("last name is :%s \n",arr[i].last_name);
             printf("first name is : %s \n",arr[i].first_name);
-            printf("Date of birth is %d-%d-%d \n",arr[i].BD.day,arr[i].BD.month,arr[i].BD.year);
+            printf("Date of birth is %s-%s-%s \n",arr[i].BD.day,arr[i].BD.month,arr[i].BD.year);
             printf("address is : %s\n",arr[i].adress);
             printf("email is :%s \n",arr[i].email);
             printf("mobile number is : %s\n",arr[i].mob_num);
@@ -523,7 +501,8 @@ void DELETE()
         int k;
         printf("what is contact number does you want to delete : ");
         scanf("%d",&k);
-        for (int n=0; n<j; n++)
+        int n;
+        for ( n=0; n<j; n++)
         {
 
             if(a[n]==k)
@@ -553,10 +532,7 @@ void DELETE()
     else
         printf("\n INvalid LAST NAME !\n ");
 
-    char ch ;
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
-    printf("\n\nPress ENTER to Back to Main Menu ......");
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
+   WAIT();
 }
 
 /*****************************************(5) PRINT FUNCTION *******************************************/
@@ -565,13 +541,14 @@ void PRINT()
     system("cls");
     //bubble_sort();
     printf("\n\n\t Printing entire Directory In sorted Order \n\n");
-    for (int i=0 ; i<counter; i++)
+    int i;
+    for (i=0 ; i<counter; i++)
     {
 
         printf("\tNo.%d\n",i+1);
         printf("last name is :%s \n",arr[i].last_name);
         printf("first name is : %s \n",arr[i].first_name);
-        printf("Date of birth is :%d-%d-%d \n",arr[i].BD.day,arr[i].BD.month,arr[i].BD.year);
+        printf("Date of birth is :%s-%s-%s \n",arr[i].BD.day,arr[i].BD.month,arr[i].BD.year);
         printf("address is : %s\n",arr[i].adress);
         printf("email is :%s \n",arr[i].email);
         printf("mobile number is : %s \n",arr[i].mob_num);
@@ -583,30 +560,94 @@ void PRINT()
 
 
 
-    char ch ;
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
-    printf("\n\nPress ENTER to Back to Main Menu ......");
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
-
+   WAIT();
 }
 /******************************************* (6)SEARCH FUNCTION *******************************************/
 void SEARCH()
 {
     system("cls");
-    char target[128] ;
-    puts("\nEnter last name you want to search with : ");
-    scanf("%s",target);
-    int j=1;            int flag_ser=0;
+    cont target ;
+        printf("\tEnter [ NULL ] to skip search by this field");
+        printf("\nEnter the last name to search:");
+        scanf("%s",target.last_name);
+        printf("\n\n\tEnter\t[ NULL ]\tto skip search by this field ");
+        printf("\nEnter the first name to search:");
+        scanf("%s",target.first_name);
+        printf("\n\nEnter\t[ NULL ]\tto skip search by this field ");
+        printf("\nEnter the birth date to search\n");
+        printf("day: ");
+        scanf("%s",target.BD.day);
+        printf("month: ");
+        scanf("%s",target.BD.month);
+        printf("year: ");
+        scanf("%s",target.BD.year);
+        printf("\nEnter the address to search: ");
+        scanf(" %[^\t\n]s",target.adress);
+        printf("\n\nEnter\t[ NULL ]\tto skip search by this field ");
+        printf("\nEnter the email to search:");
+        scanf(" %[^\t\n]s",target.email);
+        printf("\n\nEnter\t[ NULL ]\tto skip search by this field ");
+        printf("\nEnter the mobile number search:");
+        scanf(" %[^\t\n]s",target.mob_num);
+        printf(" +++++++\nADRESS: %s\n",target.adress);
+        printf(" EMAIL: %s\n",target.email);
 
-    for ( int i =0; i < counter; i++)
+
+
+
+    int cmp_str(char* target,char* string)
+    {
+         if ((strcasecmp(target,"NULL")==0)||(strcasecmp(target,string)==0))
+        {
+            return 1 ;
+        }
+
+        else
+                    printf("else \n%s\t%s\n",target,string);
+                    printf("result is:%d\n",(strcasecmp(target,string)));
+            return 0;
+    }
+
+int j=1 ,k=0,i ,flag_ser=0, num_found=0;
+int index[counter];
+   for (i =0; i < counter; i++)
+    {
+        if (cmp_str(target.last_name,arr[i].last_name)&&cmp_str(target.first_name,arr[i].first_name)&&cmp_str(target.BD.day,arr[i].BD.day)&&cmp_str(target.BD.month,arr[i].BD.month)&&cmp_str(target.BD.year,arr[i].BD.year)&&cmp_str(target.adress,arr[i].adress)&&cmp_str(target.email,arr[i].email)&&cmp_str(target.mob_num,arr[i].mob_num))
+            {   index[k++]=i;
+                num_found ++ ;
+                flag_ser = 1;
+            }
+    }
+    if ( flag_ser==0|| num_found==0)printf(" this name doesn't exist in directory  ");
+    else {
+            for( j =0 ; j <  num_found ; j ++)
+            {
+                //printf("ineDx[%d]:%d\n",j,index[j]);
+                //printf("\nContacts with this last name [%s] : \n ",target.last_name);
+                printf("\tNo.%d\n",j+1);
+                printf("last name is :%s \n",arr[index[j]].last_name);
+                printf("first name is : %s \n",arr[index[j]].first_name);
+                printf("Date of birth is %s-%s-%s \n",arr[index[j]].BD.day,arr[index[j]].BD.month,arr[index[j]].BD.year);
+                printf("address is : %s\n",arr[index[j]].adress);
+                printf("email is :%s \n",arr[index[j]].email);
+                printf("mobile number is : %s\n",arr[index[j]].mob_num);
+                printf("\n");
+            }
+            printf("\nTOTAL FOUND IS %d", num_found);
+
+    }
+
+        WAIT();
+
+ /*  for (i =0; i < counter; i++)
     {
 
-        if ((strcasecmp(target,arr[i].last_name)!=0))
+        if ((strcasecmp(target.last_name,arr[i].last_name)!=0))
             continue;
 
        else if ((strcasecmp(target,arr[i].last_name)==0))
         {
-            flag_ser=1;
+//            flag_ser=1;
             printf("\nContacts with this last name [%s] : \n ",target);
             printf("\tNo.%d\n",j);
             printf("last name is :%s \n",arr[i].last_name);
@@ -620,13 +661,10 @@ void SEARCH()
         }
 
     }
-      if (flag_ser==0)         printf(" \nInvalid choice !\n");
+     // if (flag_ser==0)         printf(" \nInvalid choice !\n");*/
 
 
-    char ch ;
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
-    printf("\n\nPress ENTER to Back to Main Menu ......");
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
+
 
 }
 
@@ -641,7 +679,8 @@ void SAVE()
     fptr=fopen("directory.txt","w+");
     fseek(fptr,0,SEEK_SET);
     printf("%d",counter);
-    for(int i=0; i<counter; i++)
+    int i;
+    for(i=0; i<counter; i++)
     {
 
         fprintf(fptr,"%s,%s,%d-%d-%d,%s,%s,%s\n",arr[i].last_name,arr[i].first_name,arr[i].BD.day,arr[i].BD.month,arr[i].BD.year,
@@ -652,10 +691,7 @@ void SAVE()
     flag_s=1;
     system("cls");
     printf("\n\nSaved successfully");
-    char ch ;
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
-    printf("\n\nPress ENTER to continue  ......");
-    while ((ch = getchar()) != '\n' && ch != EOF) ;
+    WAIT();
 }
 /*******************************************************************************************************************************/
 /*******************************************************************************************************************************/
@@ -663,7 +699,8 @@ int validate_string(char *string)
 {
     int flag_y ;
     //  scanf("%s",string[]);
-    for(int k=0; k<strlen(string); k++)
+    int k;
+    for(k=0; k<strlen(string); k++)
     {
         if((string[k]>=97&&string[k]<=122)||(string[k]>=65&&string[k]<=90))
             flag_y = 1;
@@ -742,10 +779,7 @@ void Exit ()
         default:
             printf("\n \tInvalid choice!\n");
 
-            char ch ;
-            while ((ch = getchar()) != '\n' && ch != EOF) ;
-            printf("\n\nPress ENTER to Back to Main Menu ......");
-            while ((ch = getchar()) != '\n' && ch != EOF) ;
+           WAIT();
             break ;
         }
     }
@@ -794,33 +828,36 @@ int  sort_mob (int j )
         temp = arr[j];
         arr[j]=arr[j+1];
         arr[j+1]=temp;
+        return 1;
 
     }
+    return 0 ;
 }
 /**********************************************************************************************************************/
 /**comparing date of birth**/
 void sort_date(int j)
+
 {
-    if(arr[j].BD.year>arr[j+1].BD.year)
+    if(atoi(arr[j].BD.year)>atoi(arr[j+1].BD.year))
     {
         cont temp ;
         temp = arr[j];
         arr[j]=arr[j+1];
         arr[j+1]=temp;
     }
-    else if(arr[j].BD.year==arr[j+1].BD.year)
+    else if(atoi(arr[j].BD.year)==atoi(arr[j+1].BD.year))
     {
 
-        if(arr[j].BD.month>arr[j+1].BD.month)
+        if(atoi(arr[j].BD.month)>atoi(arr[j+1].BD.month))
         {
             cont temp ;
             temp = arr[j];
             arr[j]=arr[j+1];
             arr[j+1]=temp;
         }
-        else if(arr[j].BD.month==arr[j+1].BD.month)
+        else if(atoi(arr[j].BD.month)==atoi(arr[j+1].BD.month))
         {
-            if(arr[j].BD.day>arr[j+1].BD.day)
+            if(atoi(arr[j].BD.day)>atoi(arr[j+1].BD.day))
             {
                 cont temp ;
                 temp = arr[j];
@@ -837,9 +874,11 @@ void sort_date(int j)
 
 void sort_ALL()
 {
-    for (int i=0 ; i <counter-1 ; i++)
+    int i;
+    for (i=0 ; i <counter-1 ; i++)
     {
-        for (int j=0 ; j<counter-i-1; j++)
+        int j;
+        for (j=0 ; j<counter-i-1; j++)
         {
 
             if (sort_last(j))
@@ -867,21 +906,21 @@ int count(int number)
 }
 
 /*******************************************************************************************************************************/
-int validate_day(int number){
+int validate_day(char* number){
     int flag_m=1;
-        if ( number>31 || number<=0)
+
+        if ( atoi(number)>31 || atoi(number)<=0 || strlen(number)>2)
         {
         printf("[Please Re-enter a right Day !] :\n");
             flag_m=0;
         }
 
-
         return flag_m;
 }
 /*******************************************************************************************************************************/
-int validate_month(int number){
+int validate_month(char* number){
     int flag_m=1;
-        if ( number>12 || number<=0)
+        if ( atoi(number)>12 || atoi(number)<=0|| strlen(number)>2)
         {
 
         printf("[Please Re-enter a right Month !] :\n");
@@ -892,9 +931,9 @@ int validate_month(int number){
         return flag_m;
 }
 /*******************************************************************************************************************************/
-int validate_year(int number,int numofdig){
+int validate_year(char* number){
     int flag_m=1;
-        if ( numofdig != 4 || number<=0)
+        if (atoi(number)<=0|| strlen(number)>4)
         {
 
         printf("[Please Re-enter a right Year !] :\n");
@@ -905,4 +944,11 @@ int validate_year(int number,int numofdig){
         return flag_m;
 }
 
-
+/*******************************************************************************************************************************/
+void WAIT()
+{
+     char ch ;
+            while ((ch = getchar()) != '\n' && ch != EOF) ;
+            printf("\n\nPress ENTER to Back to Main Menu ......");
+            while ((ch = getchar()) != '\n' && ch != EOF) ;
+}
